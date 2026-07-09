@@ -1,0 +1,32 @@
+{
+  "name": "everything-antigravity",
+  "version": "2.1.0",
+  "description": "The ultimate agent harness, performance optimization system, and subagent fleet — natively engineered for Google Antigravity.",
+  "main": "plugin.json",
+  "scripts": {
+    "doctor": "bash ./scripts/eag-doctor.sh",
+    "verify": "bash ./scripts/verify-all.sh",
+    "init": "bash ./scripts/init-eag.sh",
+    "install": "bash ./scripts/install.sh",
+    "release": "bash ./scripts/release.sh",
+    "lint": "echo 'No JS linting configured — EAG is a Markdown/Shell toolkit'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MvMukesh/everything-antigravity.git"
+  },
+  "keywords": [
+    "antigravity",
+    "ai-agents",
+    "subagents",
+    "skills",
+    "llm-tooling",
+    "open-source",
+    "developer-tools"
+  ],
+  "author": "MvMukesh <mukeshmanral777@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
