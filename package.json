@@ -3,13 +3,17 @@
   "version": "2.1.0",
   "description": "The ultimate agent harness, performance optimization system, and subagent fleet — natively engineered for Google Antigravity.",
   "main": "plugin.json",
+  "type": "module",
+  "bin": {
+    "eag": "./bin/eag.js"
+  },
   "scripts": {
-    "doctor": "bash ./scripts/eag-doctor.sh",
-    "verify": "bash ./scripts/verify-all.sh",
-    "init": "bash ./scripts/init-eag.sh",
-    "install": "bash ./scripts/install.sh",
-    "release": "bash ./scripts/release.sh",
-    "lint": "echo 'No JS linting configured — EAG is a Markdown/Shell toolkit'"
+    "doctor": "node ./bin/eag.js doctor",
+    "verify": "node ./bin/eag.js verify",
+    "init": "node ./bin/eag.js init",
+    "install-eag": "node ./bin/eag.js install",
+    "release": "node ./bin/eag.js release",
+    "lint": "echo 'No JS linting configured yet'"
   },
   "repository": {
     "type": "git",
@@ -28,5 +32,10 @@
   "license": "MIT",
   "engines": {
     "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "ora": "^8.2.0",
+    "picocolors": "^1.1.1"
   }
 }

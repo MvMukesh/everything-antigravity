@@ -21,11 +21,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Make scripts executable
-        run: chmod +x ./scripts/*.sh
+      - name: Make CLI executable
+        run: chmod +x ./bin/eag.js
 
       - name: Run EAG Doctor
-        run: ./scripts/eag-doctor.sh
+        run: node ./bin/eag.js doctor
 
   # ─────────────────────────────────────────────────────
   # Job 2: Full Verification Suite
@@ -43,14 +43,14 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install ShellCheck
-        run: sudo apt-get install -y shellcheck
+      - name: Install dependencies
+        run: npm ci || npm install
 
-      - name: Make scripts executable
-        run: chmod +x ./scripts/*.sh
+      - name: Make CLI executable
+        run: chmod +x ./bin/eag.js
 
       - name: Run verification suite
-        run: ./scripts/verify-all.sh
+        run: node ./bin/eag.js verify
 
   # ─────────────────────────────────────────────────────
   # Job 3: Commit Message Lint
