@@ -1,5 +1,5 @@
 import { existsSync, mkdirSync, copyFileSync, readdirSync, lstatSync } from 'fs';
-import { join, dirname } from 'path';
+import { join, dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import { logger } from '../utils/logger.js';
 import ora from 'ora';
@@ -31,7 +31,7 @@ export async function initCommand(targetDir) {
   const spinner = ora('Copying templates...').start();
   
   try {
-    const fullTargetDir = join(process.cwd(), targetDir);
+    const fullTargetDir = resolve(targetDir);
     const geminiDir = join(fullTargetDir, '.gemini');
 
     mkdirSync(join(geminiDir, 'agents'), { recursive: true });
