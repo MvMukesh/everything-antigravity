@@ -21,7 +21,9 @@ function copyRecursiveSync(src, dest) {
       copyRecursiveSync(join(src, childItemName), join(dest, childItemName));
     });
   } else {
-    copyFileSync(src, dest);
+    if (!existsSync(dest)) {
+      copyFileSync(src, dest);
+    }
   }
 }
 
@@ -44,10 +46,10 @@ export async function initCommand(targetDir) {
     copyRecursiveSync(join(EAG_ROOT, 'rules'), join(geminiDir, 'rules'));
     copyRecursiveSync(join(EAG_ROOT, 'workflows'), join(geminiDir, 'workflows'));
     
-    if (existsSync(join(EAG_ROOT, 'SOUL.md'))) {
+    if (existsSync(join(EAG_ROOT, 'SOUL.md')) && !existsSync(join(fullTargetDir, 'SOUL.md'))) {
       copyFileSync(join(EAG_ROOT, 'SOUL.md'), join(fullTargetDir, 'SOUL.md'));
     }
-    if (existsSync(join(EAG_ROOT, 'RULES.md'))) {
+    if (existsSync(join(EAG_ROOT, 'RULES.md')) && !existsSync(join(fullTargetDir, 'RULES.md'))) {
       copyFileSync(join(EAG_ROOT, 'RULES.md'), join(fullTargetDir, 'RULES.md'));
     }
 

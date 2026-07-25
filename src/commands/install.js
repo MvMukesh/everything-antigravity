@@ -22,7 +22,9 @@ function copyRecursiveSync(src, dest) {
       copyRecursiveSync(join(src, childItemName), join(dest, childItemName));
     });
   } else {
-    copyFileSync(src, dest);
+    if (!existsSync(dest)) {
+      copyFileSync(src, dest);
+    }
   }
 }
 
@@ -39,13 +41,13 @@ export async function installCommand() {
   try {
     mkdirSync(DEST_DIR, { recursive: true });
 
-    if (existsSync(join(EAG_ROOT, 'plugin.json'))) {
+    if (existsSync(join(EAG_ROOT, 'plugin.json')) && !existsSync(join(DEST_DIR, 'plugin.json'))) {
       copyFileSync(join(EAG_ROOT, 'plugin.json'), join(DEST_DIR, 'plugin.json'));
     }
-    if (existsSync(join(EAG_ROOT, 'SOUL.md'))) {
+    if (existsSync(join(EAG_ROOT, 'SOUL.md')) && !existsSync(join(DEST_DIR, 'SOUL.md'))) {
       copyFileSync(join(EAG_ROOT, 'SOUL.md'), join(DEST_DIR, 'SOUL.md'));
     }
-    if (existsSync(join(EAG_ROOT, 'RULES.md'))) {
+    if (existsSync(join(EAG_ROOT, 'RULES.md')) && !existsSync(join(DEST_DIR, 'RULES.md'))) {
       copyFileSync(join(EAG_ROOT, 'RULES.md'), join(DEST_DIR, 'RULES.md'));
     }
 
