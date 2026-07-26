@@ -1,6 +1,6 @@
 {
   "name": "everything-antigravity",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "The ultimate agent harness, performance optimization system, and subagent fleet — natively engineered for Google Antigravity.",
   "main": "plugin.json",
   "type": "module",
