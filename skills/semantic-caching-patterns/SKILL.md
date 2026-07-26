@@ -22,7 +22,13 @@ Do not rely strictly on exact string matching. "What is the capital of France?" 
 - **Primary Store:** Use **Redis** with the RediSearch/RedisJSON modules to store the embeddings and the cached string responses.
 - **Eviction Policy:** Configure Redis with an `allkeys-lru` eviction policy so that the least utilized prompt answers are evicted first when memory fills up.
 
-## 3. Cache Invalidation Triggers
+## 3. Cache Partitioning (CRITICAL SECURITY RULE)
+
+**NEVER** use a global cache key for semantic search in multi-tenant environments. This leads to **Semantic Cache Poisoning**, where a malicious user injects prompt overrides that get served to innocent users.
+- **Cache Key Design:** The Redis cache key or Vector metadata **MUST** include `Tenant_ID` and `Role_RBAC`. 
+- An embedding match is only valid if `Incoming_Tenant_ID == Cached_Tenant_ID`.
+
+## 4. Cache Invalidation Triggers
 
 A cached LLM response for a dynamic query (e.g., "Summarize today's news") becomes stale.
 - **TTL (Time to Live):** Set explicit TTLs on the cached objects (e.g., 5 minutes for news, 30 days for documentation questions).

@@ -17,7 +17,13 @@ Never serve LLMs using basic HuggingFace Transformers pipelines in production.
 - **PagedAttention**: You must rely on engines that manage the KV-Cache identically to operating system virtual memory (PagedAttention) to prevent VRAM fragmentation.
 - **Continuous Batching**: Unlike static batching which waits for the longest sequence to finish, use continuous batching to eject finished requests and slot in new ones at the millisecond level.
 
-## 2. Multi-Tenant LLMs (LoRA Routing)
+## 3. Rate Limiting & Load Shedding
+
+When fallback clusters (like an internal Llama-3 backup) are triggered due to a primary provider outage, they can instantly be DDoS'd.
+- **Token Bucket Limiters:** You must implement Redis-backed Token Bucket rate limiters at the API Gateway.
+- **Load Shedding:** If the active model cluster's queue depth exceeds safety margins, aggressively shed load by returning HTTP 429 (Too Many Requests). Do not accept connections into an infinite queue.
+
+## 4. Multi-Tenant LLMs (LoRA Routing)
 
 When serving hundreds of enterprise clients who each have their own fine-tuned model behavior:
 - **Never boot a separate base model** for each client.
