@@ -17,7 +17,8 @@ PostgreSQL handles connections as heavy OS processes. A standard managed databas
 ## 2. Mandatory Pooling Infrastructure
 
 - **Serverless RAG**: Serverless functions **MUST NEVER** connect directly to the database.
-- **PgBouncer**: You must deploy a PgBouncer instance (Transaction Mode) in front of the database. All clients connect to PgBouncer, which holds a small pool of actual database connections open and multiplexes the queries.
+- **PgBouncer**: You must deploy a PgBouncer instance (Transaction Mode) in front of the database. 
+  - **CRITICAL EDGE CASE**: Transaction Mode breaks PostgreSQL Prepared Statements. You must either disable prepared statements in your ORM (e.g., Prisma `pgBouncer=true`) or configure PgBouncer with `ignore_startup_parameters = extra_float_digits`.
 - **Managed Proxies**: Alternatively, use managed connection pools like Prisma Accelerate, Supabase Connection Pooling, or AWS RDS Proxy.
 
 ## 3. Configuration Rules

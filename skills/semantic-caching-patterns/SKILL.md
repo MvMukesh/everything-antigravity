@@ -14,6 +14,7 @@ Use this skill to drastically reduce GPU compute costs and latency in GenAI appl
 
 Do not rely strictly on exact string matching. "What is the capital of France?" and "Tell me the capital of France" are semantically identical but hash differently.
 - Use an embedding model to convert incoming queries into vectors.
+- **EDGE CASE AVOIDANCE**: Before embedding, you must check the token length of the user query. If the query exceeds the embedding model's context window (e.g., 8192 tokens for `text-embedding-3-large`), you must bypass the cache entirely and route directly to the LLM to prevent truncation corruption.
 - Search a vector database or Redis Vector Search for the closest existing embedding.
 - If the cosine similarity is above a strict threshold (e.g., `0.98`), return the cached LLM response.
 
