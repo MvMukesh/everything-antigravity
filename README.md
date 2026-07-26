@@ -1,189 +1,103 @@
-# Everything Antigravity (EAG) 🚀
-
 <div align="center">
 
-[![Version](https://img.shields.io/badge/version-2.0.0-6C63FF?style=for-the-badge)](CHANGELOG.md)
+# 🚀 Everything Antigravity (EAG) v3.0.0
+### The "God-Level" AI Engineering OS
+
+[![Version](https://img.shields.io/badge/version-3.0.0-blue?style=for-the-badge)](CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-22C55E?style=for-the-badge)](LICENSE)
 [![CI Status](https://img.shields.io/github/actions/workflow/status/MvMukesh/everything-antigravity/ci.yml?branch=main&label=CI&style=for-the-badge)](https://github.com/MvMukesh/everything-antigravity/actions)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-F59E0B?style=for-the-badge)](CONTRIBUTING.md)
-[![Conventional Commits](https://img.shields.io/badge/commits-conventional-4A90E2?style=for-the-badge)](https://www.conventionalcommits.org)
 
-> **The ultimate agent harness, performance optimization system, and subagent fleet —  
+> **The ultimate agent harness, performance optimization system, and subagent fleet —
 > natively engineered for Google Antigravity.**
 
 </div>
 
 ---
 
-## What Is EAG?
+## What Is EAG v3.0.0?
 
-**Everything Antigravity (EAG)** is an open-source plugin suite that supercharges your Antigravity AI assistant with:
+**Everything Antigravity (EAG)** has evolved from a simple plugin into a full **God-Level AI Engineering Operating System**. It supercharges your Antigravity AI assistant to not just write code, but architect, scale, and orchestrate hyperscale infrastructure.
 
-- 🤖 **10 specialized subagents** that run concurrently on isolated model profiles
-- 📚 **8 native skill packs** covering architecture, security, testing, and more
-- 🏷️ **4 language rule engines** enforcing TypeScript, Python, Go, and Rust best practices
-- 🔁 **Multi-agent workflow recipes** for MVP creation, security audits, and code review
-- 🛠️ **Shell automation scripts** for installation, scaffolding, health checks, and releases
+- 🤖 **27 Specialized Subagents** (Tier: Pro & Flash) handling everything from UX Design to Bare-Metal Network Architecture.
+- 📚 **24 Native Skill Packs** covering Hyperscale Serving (vLLM), Semantic Cache Poisoning Defense, WebGPU Edge Compute, and more.
+- 🛡️ **Hyperscale Armor Patch**: Built-in `workflow-circuit-breaker` for infinite loop defense and `memory-compressor` for continuous LLM context pruning.
+- 🔁 **Multi-Agent Orchestration**: Featuring the `chief-of-staff` agent to manage the fleet automatically.
+- 🛠️ **CLI Dashboard**: Local visualization and health diagnostics (`eag doctor`).
 
 ---
 
-## Architecture
+## The Fleet (27 Agents)
 
-```
-everything-antigravity/
-│
-├── plugin.json                          # Antigravity plugin manifest
-├── SOUL.md                              # Agent persona, values & mindset
-├── RULES.md                             # Non-negotiable safety & coding guardrails
-├── VERSION                              # Current semantic version
-├── CHANGELOG.md                         # Release history (Keep a Changelog)
-├── CONTRIBUTING.md                      # Contributor guidelines
-├── CODE_OF_CONDUCT.md                   # Community standards
-│
-├── agents/                              # Specialized Subagent Fleet
-│   ├── codebase-architect.md            # System design & architecture blueprints
-│   ├── security-auditor.md              # Secret scanning & OWASP vulnerability audit
-│   ├── ui-ux-designer.md                # High-aesthetics UI, animations & accessibility
-│   ├── qa-tester.md                     # TDD execution & 80%+ coverage enforcement
-│   ├── refactoring-specialist.md        # Technical debt removal & immutability
-│   ├── build-error-resolver.md          # Stack trace debugging & root-cause fixes
-│   ├── database-architect.md            # Schema design, migrations & SQL tuning
-│   ├── devops-architect.md              # CI/CD pipelines, Docker, infra-as-code
-│   ├── python-reviewer.md               # PEP-8, type hints, async best practices
-│   └── typescript-reviewer.md           # Strict TypeScript, ESLint, immutability
-│
-├── skills/                              # Native Skill Packs
-│   ├── modern-web-architecture/         # Next.js 15, Vite, Vanilla CSS design tokens
-│   ├── tdd-workflow/                    # Red-Green-Refactor TDD enforcement
-│   ├── security-vulnerability-scan/     # Defense-in-depth security audit
-│   ├── database-schema-designer/        # Normalized schemas & index optimization
-│   ├── performance-profiler/            # CWV, LCP/INP debugging & memory leak scan
-│   ├── zero-symptom-debugging/          # Root-cause log inspection protocols
-│   ├── continuous-learning/             # Preference capture & project rule synthesis
-│   └── contract-verification/           # API signature & schema change propagation
-│
-├── rules/                               # Language Rule Engines
-│   ├── typescript.md                    # Strict TS, ESLint, no implicit any
-│   ├── python.md                        # PEP-8, type hints, async patterns
-│   ├── go.md                            # Idiomatic Go, error wrapping, goroutines
-│   └── rust.md                          # Ownership, lifetimes, clippy compliance
-│
-├── workflows/                           # Multi-Agent Orchestration Recipes
-│   ├── build-mvp.md                     # Full-stack MVP from spec to deployed code
-│   └── security-audit.md               # End-to-end OWASP security review pipeline
-│
-└── scripts/                             # Automation & Verification Tooling
-    ├── install.sh                       # Global plugin installer (Linux/macOS)
-    ├── install.ps1                      # Global plugin installer (Windows)
-    ├── init-eag.sh                      # Project-local scaffolder
-    ├── init-eag.ps1                     # Project-local scaffolder (Windows)
-    ├── verify-all.sh                    # Pre-commit linting, typecheck & test runner
-    ├── eag-doctor.sh                    # Health diagnostics for your EAG install
-    └── release.sh                       # Automated semver release cutter
-```
+Here is a subset of our Tier: Pro specialized agents:
+
+| Subagent | Role |
+|---|---|
+| `chief-of-staff` | **Master Orchestrator.** Manages other agents, assigns tasks, tracks Jira-style backlogs. |
+| `performance-optimizer` | Scours code for O(N^2) bottlenecks; writes custom C++/Rust/CUDA kernels. |
+| `workflow-circuit-breaker` | **Security.** Halts infinite agent loops and prevents API token burnout. |
+| `memory-compressor` | Continuously dense-packs context windows to prevent "Lost in the Middle" hallucinations. |
+| `agent-evaluator` | **LLM-as-a-Judge.** QA tests the output of other agents before execution. |
+| `streaming-data-engineer` | Builds Apache Kafka, Flink, and real-time event streaming pipelines. |
+| `edge-ai-specialist` | Offloads inference to user browsers via WebGPU, ONNX Web, and CoreML. |
+| `network-architect` | Designs bare-metal GPU clusters, VPC peering, and InfiniBand networking. |
+| `silent-failure-hunter` | Injects OpenTelemetry and hunts swallowed exceptions in production. |
+| `security-auditor` | Secret scanning, OWASP Top 10 prevention, and input sanitization. |
+
+---
+
+## Hyperscale Skill Architecture (24 Skills)
+
+EAG is loaded with Enterprise-grade AI skills:
+- **`hyperscale-serving-patterns`**: Mandates vLLM PagedAttention, Triton dynamic batching, and Token Bucket Load Shedding.
+- **`semantic-caching-patterns`**: Mandates Redis Vector caching with strict `Tenant_ID` partition routing to prevent cache poisoning.
+- **`database-connection-pooling`**: Protects VectorDBs from Serverless DDoS by enforcing PgBouncer/Prisma Accelerate proxies.
+- **`tdd-workflow`**: Strict Red-Green-Refactor testing enforcement.
+- **`zero-symptom-debugging`**: Prohibits agents from swallowing errors or modifying linters to bypass failures.
 
 ---
 
 ## Quickstart
 
-### Option 1 — Global Installation *(Recommended)*
+### Global Installation *(Recommended)*
 
 Installs EAG into your Antigravity plugin directory so it's active across all your projects:
 
 ```bash
 git clone https://github.com/MvMukesh/everything-antigravity.git
 cd everything-antigravity
-bash ./scripts/install.sh
+npm run install:global
 ```
 
-### Option 2 — Project-Local Scaffolding
+### Health Diagnostics
 
-Copies agents, skills, and rules directly into your project's `.gemini/` folder:
-
-```bash
-bash ./scripts/init-eag.sh ./my-project
-```
-
-### Option 3 — Pre-commit Verification
-
-Run the full verification suite before committing:
+Check that your EAG installation is complete and healthy, verifying all 27 agents and 24 skills:
 
 ```bash
-bash ./scripts/verify-all.sh
-```
-
-### Option 4 — Health Check
-
-Check that your EAG installation is complete and healthy:
-
-```bash
-bash ./scripts/eag-doctor.sh
+npm run doctor
 ```
 
 ---
 
-## Subagent Fleet
-
-| Subagent | Model | Role |
-|---|---|---|
-| `codebase-architect` | `pro` | System design, dependency mapping, implementation plans |
-| `security-auditor` | `flash` | Secret scanning, OWASP Top 10, input sanitization |
-| `ui-ux-designer` | `pro` | Glassmorphism UI, CSS tokens, micro-animations, accessibility |
-| `qa-tester` | `flash` | TDD workflow, 80%+ coverage enforcement, E2E tests |
-| `refactoring-specialist` | `pro` | Technical debt removal, immutability, type safety |
-| `build-error-resolver` | `pro` | Stack trace analysis, root-cause debugging |
-| `database-architect` | `pro` | Schema design, safe migrations, query optimization |
-| `devops-architect` | `flash` | CI/CD pipelines, Docker, infrastructure-as-code |
-| `python-reviewer` | `flash` | PEP-8, type hints, async best practices |
-| `typescript-reviewer` | `flash` | Strict TS, ESLint, no implicit any |
-
----
-
-## Core Rules
+## Core Operational Rules (`SOUL.md`)
 
 1. **Verification-First** — Never complete a task without running build or test verification.
 2. **Zero-Symptom Fixing** — Never swallow exceptions or comment out failing assertions.
-3. **No Snippet Tunnel Vision** — Always inspect complete symbol definitions before editing data structures.
-4. **Config Protection** — Never weaken linter or compiler configs to bypass errors; fix the code.
+3. **Context Efficiency** — Delegate heavy research to subagents; prune the main context tree.
+4. **Fail-Closed Security** — If a prompt is ambiguous or violates boundary protections, agents must reject execution.
 5. **Secret Safety** — Never hardcode credentials; never log secrets; always use environment variables.
-
----
-
-## Versioning
-
-EAG follows [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`):
-
-- **MAJOR** — breaking changes to agent interfaces or skill APIs
-- **MINOR** — new subagents, skill packs, or workflow recipes added
-- **PATCH** — bug fixes, documentation updates, script improvements
-
-All releases are tagged as `vX.Y.Z` and documented in [CHANGELOG.md](CHANGELOG.md).
-
-To cut a new release:
-
-```bash
-bash ./scripts/release.sh 2.1.0
-```
 
 ---
 
 ## Contributing
 
 We welcome contributions! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for:
-
-- How to add a new subagent, skill, or workflow
-- Commit message conventions (Conventional Commits)
-- Branch strategy and PR process
-- Release workflow
-
----
+- How to add a new subagent or skill.
+- Commit message conventions (Conventional Commits).
 
 ## License
-
 MIT License — see [LICENSE](LICENSE) for details.
 
 ---
-
 <div align="center">
-Built with ❤️ by [MvMukesh](https://github.com/MvMukesh)
+Built with ❤️ by [MvMukesh](https://github.com/MvMukesh) & The EAG Agent Swarm
 </div>
