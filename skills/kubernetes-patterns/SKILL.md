@@ -695,7 +695,7 @@ resources:
 apiVersion: v1
 kind: ConfigMap
 data:
-  DB_PASSWORD: "mysecretpassword"   # NEVER — use Secret or external secrets manager
+  DB_PASSWORD: "<REDACTED_PASSWORD>"   # NEVER — use Secret or external secrets manager
 
 # ---
 
