@@ -1,4 +1,4 @@
-import { existsSync, readdirSync } from 'fs';
+import { existsSync, readdirSync, readFileSync } from 'fs';
 import { join } from 'path';
 import os from 'os';
 import { logger } from '../utils/logger.js';
@@ -25,7 +25,17 @@ export async function doctorCommand() {
   const globalDir = join(os.homedir(), '.gemini/config/plugins/everything-antigravity');
 
   // If running inside the EAG repo itself (e.g. CI), test the local files.
-  const isLocalEAGRepo = existsSync(join(localDir, 'plugin.json')) && existsSync(join(localDir, 'agents'));
+  let isLocalEAGRepo = false;
+  try {
+    const pkgPath = join(localDir, 'plugin.json');
+    if (existsSync(pkgPath) && existsSync(join(localDir, 'agents'))) {
+      const pluginJson = JSON.parse(readFileSync(pkgPath, 'utf8'));
+      if (pluginJson.name === 'everything-antigravity') {
+        isLocalEAGRepo = true;
+      }
+    }
+  } catch (e) {}
+  
   const pluginDir = isLocalEAGRepo ? localDir : globalDir;
 
   if (isLocalEAGRepo) {

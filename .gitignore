@@ -54,3 +54,5 @@ scratch/
 # ── Release Artifacts ──────────────────────────────────
 *.tgz
 *.tar.gz
+.gemini/
+next1.md

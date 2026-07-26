@@ -2,17 +2,30 @@
   "name": "everything-antigravity",
   "version": "2.2.0",
   "description": "The ultimate agent harness, performance optimization system, and subagent fleet — natively engineered for Google Antigravity.",
-  "main": "plugin.json",
   "type": "module",
+  "files": [
+    "bin",
+    "src",
+    "agents",
+    "rules",
+    "skills",
+    "workflows",
+    "plugin.json",
+    "RULES.md",
+    "SOUL.md",
+    "LICENSE"
+  ],
   "bin": {
     "eag": "./bin/eag.js"
   },
   "scripts": {
     "doctor": "node ./bin/eag.js doctor",
+    "test": "node ./bin/eag.js doctor",
     "verify": "node ./bin/eag.js verify",
     "init": "node ./bin/eag.js init",
     "install-eag": "node ./bin/eag.js install",
     "release": "node ./bin/eag.js release",
+    "dashboard": "node ./bin/eag.js dashboard",
     "lint": "echo 'No JS linting configured yet'"
   },
   "repository": {

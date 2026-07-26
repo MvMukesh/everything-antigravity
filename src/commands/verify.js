@@ -1,4 +1,4 @@
-import { existsSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import { execSync } from 'child_process';
 import { logger } from '../utils/logger.js';
 import pc from 'picocolors';
@@ -14,7 +14,8 @@ function runCheck(cmd) {
 
 function commandExists(cmd) {
   try {
-    execSync(`command -v ${cmd}`, { stdio: 'ignore' });
+    const checkCmd = process.platform === 'win32' ? `where ${cmd}` : `command -v ${cmd}`;
+    execSync(checkCmd, { stdio: 'ignore' });
     return true;
   } catch (e) {
     return false;
@@ -36,12 +37,23 @@ export async function verifyCommand() {
       logger.success('ESLint check passed.');
       passed++;
     } else {
-      logger.info('No local JS/TS linter configured or warnings present.');
+      // Check if either tool is actually installed locally
+      const hasBiome = runCheck('npx --no-install biome --version');
+      const hasEslint = runCheck('npx --no-install eslint --version');
+      if (hasBiome || hasEslint) {
+        logger.error('JS/TS linting failed.');
+        failed++;
+      } else {
+        logger.info('No local JS/TS linter configured.');
+      }
     }
   } else if (commandExists('ruff') && (existsSync('pyproject.toml') || existsSync('ruff.toml'))) {
     if (runCheck('ruff check .')) {
       logger.success('Ruff check passed.');
       passed++;
+    } else {
+      logger.error('Ruff check failed.');
+      failed++;
     }
   } else {
     logger.info('No recognizable linters found.');
@@ -61,6 +73,9 @@ export async function verifyCommand() {
     if (runCheck('pyright')) {
       logger.success('Pyright check passed.');
       passed++;
+    } else {
+      logger.error('Pyright check failed.');
+      failed++;
     }
   } else {
     logger.info('No recognizable typecheckers found.');
@@ -68,7 +83,16 @@ export async function verifyCommand() {
 
   logger.blank();
   logger.step('Running Polyglot Test Suite...');
-  if (existsSync('package.json') && runCheck("grep -q '\"test\"' package.json")) {
+  
+  let hasNpmTest = false;
+  if (existsSync('package.json')) {
+    try {
+      const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
+      hasNpmTest = !!pkg.scripts?.test;
+    } catch(e) {}
+  }
+
+  if (hasNpmTest) {
     let testCmd = 'npm test';
     if (commandExists('pnpm') && existsSync('pnpm-lock.yaml')) testCmd = 'pnpm test';
     else if (commandExists('bun') && existsSync('bun.lockb')) testCmd = 'bun test';
@@ -101,7 +125,11 @@ export async function verifyCommand() {
   }
 
   logger.blank();
-  if (failed === 0) {
+  if (passed === 0 && failed === 0) {
+    console.log(pc.yellow(`⚠️ VERIFICATION SKIPPED. No checks were executed (0 passed, 0 failed).`));
+    console.log(pc.yellow(`This is treated as a failure to prevent unverified code from merging.`));
+    process.exit(1);
+  } else if (failed === 0) {
     console.log(pc.green(`🎉 ALL CHECKS PASSED! (${passed} successful). Ready for commit/merge.`));
     process.exit(0);
   } else {

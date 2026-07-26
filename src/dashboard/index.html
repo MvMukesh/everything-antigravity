@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="color-scheme" content="dark">
+    <title>EAG Command Center</title>
+    <meta name="description" content="EAG Dashboard - Advanced Agentic Control">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- highlight.js for code blocks -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <!-- marked.js for markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- DOMPurify to prevent XSS (optional but good practice) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.9/purify.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar glass-panel animate-fade-in">
+            <div class="sidebar-header">
+                <div class="logo-glow">
+                    <!-- SVG logo matching ECC mark vibes -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <h2>EAG <span>Core</span></h2>
+                <div id="version-badge" class="badge">v--</div>
+            </div>
+            <ul class="nav-links stagger-children">
+                <li class="active" data-target="overview"><span class="icon">📊</span> Overview</li>
+                <li data-target="agents"><span class="icon">🤖</span> Subagents</li>
+                <li data-target="skills"><span class="icon">📦</span> Skill Packs</li>
+                <li data-target="workflows"><span class="icon">🔄</span> Workflows</li>
+                <li data-target="rules"><span class="icon">🛡️</span> Governance</li>
+                <li data-target="diagnostics"><span class="icon">🏥</span> Diagnostics</li>
+            </ul>
+        </nav>
+
+        <!-- Main Viewport -->
+        <main class="main-content">
+            <!-- OVERVIEW -->
+            <section id="overview" class="view-section active animate-fade-in-up">
+                <header class="section-header">
+                    <h1>Command Center</h1>
+                    <p>Live health and subsystem overview.</p>
+                </header>
+                <div class="stats-grid stagger-children" id="stats-grid">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <!-- SUBAGENTS -->
+            <section id="agents" class="view-section animate-fade-in-up">
+                <header class="section-header">
+                    <h1 class="gradient-text">Subagent Fleet</h1>
+                    <p>Autonomous specialized AI agents available for orchestration.</p>
+                </header>
+                <div class="search-bar glass-panel animate-fade-in">
+                    <input type="text" id="search-agents" placeholder="Search agents by name or role...">
+                </div>
+                <div class="cards-grid stagger-children" id="agents-grid"></div>
+            </section>
+
+            <!-- SKILL PACKS -->
+            <section id="skills" class="view-section animate-fade-in-up">
+                <header class="section-header">
+                    <h1 class="gradient-text">Skill Pack Library</h1>
+                    <p>Domain-specific execution instructions and tool guidelines.</p>
+                </header>
+                <div class="cards-grid stagger-children" id="skills-grid"></div>
+            </section>
+
+            <!-- WORKFLOWS -->
+            <section id="workflows" class="view-section animate-fade-in-up">
+                <header class="section-header">
+                    <h1>Multi-Agent Workflows</h1>
+                    <p>Standardized orchestration pipelines for complex goals.</p>
+                </header>
+                <div class="cards-grid stagger-children" id="workflows-grid"></div>
+            </section>
+
+            <!-- GOVERNANCE & RULES -->
+            <section id="rules" class="view-section animate-fade-in-up">
+                <header class="section-header">
+                    <h1>Governance & Rules</h1>
+                    <p>Core directives and domain-specific rule engines.</p>
+                </header>
+                <div class="tabs glass-panel" id="rules-tabs">
+                    <button class="tab-btn active" data-rule="soul">SOUL.md</button>
+                    <button class="tab-btn" data-rule="rules">RULES.md</button>
+                </div>
+                <div class="markdown-container glass-panel" id="rules-content"></div>
+            </section>
+
+            <!-- DIAGNOSTICS & VERIFY -->
+            <section id="diagnostics" class="view-section animate-fade-in-up">
+                <header class="section-header">
+                    <h1>System Diagnostics</h1>
+                    <p>Run pre-flight checks and verify internal health.</p>
+                </header>
+                <div class="action-buttons">
+                    <button id="btn-doctor" class="btn primary glass-panel">Run eag doctor</button>
+                    <button id="btn-verify" class="btn secondary glass-panel">Run eag verify</button>
+                </div>
+                <div class="terminal-window glass-panel">
+                    <div class="terminal-header">
+                        <div class="dot red"></div>
+                        <div class="dot yellow"></div>
+                        <div class="dot green"></div>
+                        <span class="terminal-title">Terminal Output</span>
+                    </div>
+                    <pre id="terminal-output" class="terminal-body">Ready.</pre>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal for Markdown Viewing -->
+    <div id="md-modal" class="modal-overlay hidden">
+        <div class="modal-content glass-panel">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <h2 id="modal-title">Title</h2>
+            <div id="modal-body" class="markdown-body"></div>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
